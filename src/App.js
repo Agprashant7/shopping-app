@@ -11,7 +11,8 @@ function App() {
         <Routes>{/* <Route exact path="/" element={<Feed />} /> */}</Routes>
       </div>
     </BrowserRouter>
-  );
-}
 
+
+  )
+}
 export default App;
