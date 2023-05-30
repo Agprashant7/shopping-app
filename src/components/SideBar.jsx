@@ -27,10 +27,10 @@ const SideBar = () => {
             {tab === category.id && (
               <div className="w-1.5 h-full bg-amber-500 absolute left-0 rounded" />
             )}
-            <span class="rounded shadow-sm">
+            <span className="rounded shadow-sm">
               <category.icon size={20} color={COLORS.black} />
             </span>
-            <span class="absolute left-16 scale-0 rounded bg-gray-800 px-2.5 py-1 text-xs text-white group-hover:scale-100">
+            <span className="absolute left-16 scale-0 rounded bg-gray-800 px-2.5 py-1 text-xs text-white group-hover:scale-100">
               {category.name}
             </span>
           </button>
