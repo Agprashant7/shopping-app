@@ -5,6 +5,7 @@ import { COLORS } from "../../../themes/Color";
 
 const ButtonIncOrDec = ({
   count,
+  isExpand,
   onPlusClick,
   onMinusClick,
   onDeleteClick,

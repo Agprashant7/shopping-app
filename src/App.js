@@ -8,9 +8,8 @@ import HistoryForPerticularId from "./components/HistoryForPerticularId";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-white flex flex-row">
-        <SideBar />
-
+      <div className="bg-white">
+        <SideBar/>
         <Routes>
           <Route exact path="/" element={<ShoppingList />} />
           <Route exact path="/history" element={<ShoppingHistory />} />
