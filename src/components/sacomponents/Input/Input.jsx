@@ -17,7 +17,7 @@ export const SearchInput = ({
         </div>
         <input
           type={type}
-          class="block w-full p-4 pl-10 text-sm text-gray-600 border border-gray-300 rounded-lg bg-white shadow-md focus:outline-none"
+          class="block w-full p-4 pl-10 text-base font-normal text-gray-800 border rounded-lg bg-white focus:outline-none"
           placeholder={placeholder}
           required={required}
           value={value}

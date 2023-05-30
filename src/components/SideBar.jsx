@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { SideBarButton } from "../utils/Constants";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { COLORS } from "../themes/Color";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
+  const navigate = useNavigate();
   const [tab, setTab] = useState(0);
   const [cartCount, setCartCount] = useState(0);
 
@@ -17,7 +19,10 @@ const SideBar = () => {
           <button
             className="w-full items-center justify-center flex h-11 relative group"
             key={category.name}
-            onClick={() => setTab(category.id)}
+            onClick={() => {
+              setTab(category.id);
+              navigate(category.routing);
+            }}
           >
             {tab === category.id && (
               <div className="w-1.5 h-full bg-amber-500 absolute left-0 rounded" />
