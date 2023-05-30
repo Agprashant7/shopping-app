@@ -5,11 +5,12 @@ import { COLORS } from "../../../themes/Color";
 
 const ButtonIncOrDec = ({
   count,
+  isExpand,
   onPlusClick,
   onMinusClick,
   onDeleteClick,
-}) => {
-  return (
+}) =>
+  isExpand ? (
     <div className="flex flex-row items-center w-40 h-10 rounded-xl bg-white shadow-md border ml-4 mt-4">
       <div
         className="bg-orange-400 flex items-center h-full rounded-xl px-2.5 mr-1"
@@ -23,8 +24,9 @@ const ButtonIncOrDec = ({
         <AiOutlinePlus color={COLORS.orange} onClick={onPlusClick} />
       </div>
     </div>
+  ) : (
+    <span className="text-orange-400 rounded-2xl border-orange-400 border px-2.5 py-2 text-xs">{`${count} pcs`}</span>
   );
-};
 
 export default ButtonIncOrDec;
 

@@ -51,6 +51,7 @@ export const InputField = ({
   placeholder,
   required,
   type,
+  disabled
 }) => {
   return (
     <div>
@@ -58,6 +59,7 @@ export const InputField = ({
         {label}
       </label>
       <input
+      disabled={disabled}
         type={type}
         class="border border-gray-300 text-gray-600 text-sm rounded-lg w-full p-3.5 bg-white shadow-md focus:outline-none"
         placeholder={placeholder}
@@ -76,6 +78,7 @@ InputField.propTypes = {
   required: PropTypes.bool,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  disabled:PropTypes.bool,
 };
 
 InputField.defaultProps = {
@@ -85,6 +88,7 @@ InputField.defaultProps = {
   required: false,
   value: "",
   onChange: "",
+  disabled:false
 };
 
 export const TextArea = ({ label, value, onChange, placeholder }) => {
