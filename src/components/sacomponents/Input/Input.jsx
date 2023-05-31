@@ -51,15 +51,16 @@ export const InputField = ({
   placeholder,
   required,
   type,
-  disabled
+  disabled,
+  ...rest
 }) => {
   return (
     <div>
-      <label className="block mb-2 text-sm font-medium text-gray-600">
-        {label}
+      <label dangerouslySetInnerHTML={{__html: label}} className="block mb-2 text-sm font-medium text-gray-600">
       </label>
       <input
-      disabled={disabled}
+        {...rest}
+        disabled={disabled}
         type={type}
         className="border border-gray-300 text-gray-600 text-sm rounded-lg w-full p-3.5 bg-white shadow-md focus:outline-none"
         placeholder={placeholder}
@@ -78,7 +79,7 @@ InputField.propTypes = {
   required: PropTypes.bool,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  disabled:PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 InputField.defaultProps = {
@@ -88,14 +89,15 @@ InputField.defaultProps = {
   required: false,
   value: "",
   onChange: "",
-  disabled:false
+  disabled: false,
 };
 
-export const TextArea = ({ label, value, onChange, placeholder }) => {
+export const TextArea = ({ label, value, onChange, placeholder ,...rest}) => {
   return (
     <div>
       <label className="block mb-2 text-sm text-gray-600 ">{label}</label>
       <textarea
+       {...rest}
         rows="4"
         className="block p-2.5 w-full text-sm text-gray-600 bg-white rounded-lg border border-gray-400 shadow-md focus:outline-none"
         placeholder={placeholder}
@@ -120,16 +122,18 @@ TextArea.defaultProps = {
   onChange: "",
 };
 
-export const InputSelect = ({ label, options, value, onChange }) => {
+export const InputSelect = ({ label, options, value, onChange,...rest }) => {
   return (
     <div>
       <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-white">
         {label}
       </label>
       <select
+          {...rest}
         className="block p-4 w-full text-sm text-gray-600 bg-white rounded-lg border border-gray-400 shadow-md focus:outline-none"
         value={value}
         onChange={onChange}
+        defaultValue={''}
       >
         {options.map((item) => (
           <option

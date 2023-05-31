@@ -2,9 +2,9 @@ import Bottle from '../../assets/source.svg'
 import { IoMdArrowBack } from 'react-icons/io';
 const ItemDescription=({onDelete,onAddToList})=>{
     return(
-        <div class='absolute max-[768px]:w-11/12 bg-white w-1/5 flex  justify-between flex-col h-screen'>
+        <div class=' max-[768px]:w-11/12 bg-white w-1/5 flex  justify-between flex-col h-screen'>
         <div class='mx-8 overflow-y-auto '>
-            <div class='flex flex-row justify-start items-center'>
+            <div class='flex mt-4 flex-row justify-start items-center'>
             <IoMdArrowBack color='#F9A109'/>
             <span class='text-[#F9A109] text-xs ml-1'> Back</span>
             </div>  

@@ -3,7 +3,12 @@ import { MdEdit } from "react-icons/md";
 import ButtonIncOrDec from "../sacomponents/ButtonIncorDec";
 import { InputField } from "../sacomponents/Input/Input";
 
-const RenderItems = ({ data, incrementOrDecrementCount, deleteItem }) => {
+const RenderItems = ({
+  data,
+  incrementOrDecrementCount,
+  deleteItem,
+  choosePanel,
+}) => {
   return (
     <div className="w-1/5 h-screen">
       <div className="bg-[#FFF0DE] h-5/6 flex flex-col items-center overflow-y-auto">
@@ -15,7 +20,7 @@ const RenderItems = ({ data, incrementOrDecrementCount, deleteItem }) => {
             <p className="text-sm text-white font-medium">
               Didn’t find what you need?
             </p>
-            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-medium">
+            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal"onClick={()=>choosePanel(1)} >
               Add Item
             </button>
           </div>
