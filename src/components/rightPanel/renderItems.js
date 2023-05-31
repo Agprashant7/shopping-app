@@ -3,24 +3,7 @@ import { MdEdit } from "react-icons/md";
 import ButtonIncOrDec from "../sacomponents/ButtonIncorDec";
 import { InputField } from "../sacomponents/Input/Input";
 
-const RenderItems = () => {
-  const sampleData = [
-    {
-      type: "Fruits and Vegitables",
-      items: [
-        { name: "Banana", count: 2 },
-        { name: "Apple", count: 1 },
-      ],
-    },
-    {
-      type: "Meat and Fish",
-      items: [
-        { name: "Tomoato", count: 2 },
-        { name: "Spinach", count: 3 },
-      ],
-    },
-  ];
-
+const RenderItems = ({ data, incrementOrDecrementCount, deleteItem }) => {
   return (
     <div className="w-1/5 h-screen">
       <div className="bg-[#FFF0DE] h-5/6 flex flex-col items-center overflow-y-auto">
@@ -32,14 +15,14 @@ const RenderItems = () => {
             <p className="text-sm text-white font-medium">
               Didn’t find what you need?
             </p>
-            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal">
+            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-medium">
               Add Item
             </button>
           </div>
         </div>
 
         <div className="flex w-4/5 items-center justify-between">
-          <div className="text-xl font-medium">
+          <div className="text-xl text-black font-medium">
             <p>Shopping List</p>
           </div>
           <div className="cursor-pointer">
@@ -48,26 +31,43 @@ const RenderItems = () => {
         </div>
 
         <div className="w-4/5">
-          {sampleData.map((value, i) => {
-            return (
-              <div className="mt-5 mb-3">
-                <p className="text-xs font-medium text-gray-400">
-                  {value.type}
-                </p>
-                {value.items.map((item, i) => {
-                  return (
-                    <div className="flex flex-row justify-between items-center py-3">
-                      <div className="text-base font-normal">{item.name}</div>
-                      <ButtonIncOrDec
-                        count={item.count}
-                        isExpand={item.count > 1}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+          {data &&
+            data.map((value, valueIndex) => {
+              return (
+                <div className="mt-5 mb-3">
+                  <p className="text-xs font-medium text-gray-500">
+                    {value.type}
+                  </p>
+                  {value.items.map((item, itemIndex) => {
+                    return (
+                      <div className="flex flex-row justify-between items-center py-3">
+                        <div className="text-base font-normal">{item.name}</div>
+                        <ButtonIncOrDec
+                          count={item.count}
+                          isExpand={item.count > 1}
+                          incrementOrDecrementCount={() =>
+                            incrementOrDecrementCount(valueIndex, itemIndex)
+                          }
+                          onPlusClick={() =>
+                            incrementOrDecrementCount(valueIndex, itemIndex)
+                          }
+                          onMinusClick={() =>
+                            incrementOrDecrementCount(
+                              valueIndex,
+                              itemIndex,
+                              true
+                            )
+                          }
+                          onDeleteClick={() =>
+                            deleteItem(valueIndex, itemIndex)
+                          }
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
         </div>
       </div>
       <div className="h-1/6 flex items-center justify-center">

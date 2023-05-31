@@ -9,7 +9,7 @@ const ButtonIncOrDec = ({
   onPlusClick,
   onMinusClick,
   onDeleteClick,
-  isExpand,
+  incrementOrDecrementCount,
 }) =>
   isExpand ? (
     <div className="flex flex-row items-center w-40 h-10 rounded-xl bg-white shadow-md border">
@@ -34,7 +34,10 @@ const ButtonIncOrDec = ({
       </div>
     </div>
   ) : (
-    <span className="text-orange-400 rounded-2xl border-orange-400 border px-3 py-1 text-xs font-medium cursor-pointer">{`${count} pcs`}</span>
+    <span
+      className="text-orange-400 rounded-2xl border-orange-400 border px-3 py-1 text-xs font-medium cursor-pointer"
+      onClick={incrementOrDecrementCount}
+    >{`${count} pcs`}</span>
   );
 
 export default ButtonIncOrDec;
@@ -45,6 +48,7 @@ ButtonIncOrDec.propTypes = {
   onMinusClick: PropTypes.func,
   onDeleteClick: PropTypes.func,
   isExpand: PropTypes.bool,
+  incrementOrDecrementCount: PropTypes.func,
 };
 
 ButtonIncOrDec.defaultProps = {
@@ -53,4 +57,5 @@ ButtonIncOrDec.defaultProps = {
   onMinusClick: "",
   onDeleteClick: "",
   isExpand: false,
+  incrementOrDecrementCount: "",
 };
