@@ -87,6 +87,7 @@ const shoppingItems = [
 const ShoppingList = () => {
   const [search, setSearch] = useState("");
   const [items, setItems] = useState([]);
+  const [rightPanel, setRightPanel] = useState(0);
 
   const addItemToBasket = (type, data) => {
     const itemIndex = items.findIndex((item) => item.type === type);
@@ -137,6 +138,8 @@ const ShoppingList = () => {
       data={items}
       incrementOrDecrementCount={incrementOrDecrementCount}
       deleteItem={deleteItem}
+      rightPanel={rightPanel}
+      setRightPanel={setRightPanel}
     >
       <div className="flex flex-row justify-between">
         <p className="text-2xl text-black w-[30%] font-medium">
@@ -158,6 +161,7 @@ const ShoppingList = () => {
                   <CardWithIcon
                     title={data.name}
                     onClick={() => addItemToBasket(item.type, data)}
+                    onCardButtonClick={() => setRightPanel(2)}
                   />
                 );
               })}

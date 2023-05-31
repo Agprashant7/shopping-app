@@ -56,7 +56,7 @@ export const InputField = ({
 }) => {
   return (
     <div>
-      <label dangerouslySetInnerHTML={{__html: label}} className="block mb-2 text-sm font-medium text-gray-600">
+      <label dangerouslySetInnerHTML={{__html: label}} className="block mb-2 text-sm font-medium text-black">
       </label>
       <input
         {...rest}

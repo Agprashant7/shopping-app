@@ -20,7 +20,7 @@ const RenderItems = ({
             <p className="text-sm text-white font-medium">
               Didn’t find what you need?
             </p>
-            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal"onClick={()=>choosePanel(1)} >
+            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal"onClick={choosePanel} >
               Add Item
             </button>
           </div>

@@ -8,9 +8,9 @@ const DashBoardLayout = ({
   incrementOrDecrementCount,
   deleteItem,
   children,
+  rightPanel,
+  setRightPanel,
 }) => {
-  const [rightPanel, setRightPanel] = React.useState(0);
-
   const DisplayRightPanel = () => {
     if (rightPanel == 0) {
       return (
@@ -18,19 +18,16 @@ const DashBoardLayout = ({
           data={data}
           incrementOrDecrementCount={incrementOrDecrementCount}
           deleteItem={deleteItem}
-          choosePanel={choosePanel}
+          choosePanel={() => setRightPanel(1)}
         />
       );
     }
     if (rightPanel == 1) {
-      return <AddItems choosePanel={choosePanel} />;
+      return <AddItems choosePanel={() => setRightPanel(0)} />;
     }
     if (rightPanel == 2) {
-      return <ItemDescription choosePanel={choosePanel} />;
+      return <ItemDescription choosePanel={() => setRightPanel(0)} />;
     }
-  };
-  const choosePanel = (number) => {
-    setRightPanel(number);
   };
 
   return (
