@@ -10,18 +10,19 @@ function App() {
   return (
     <BrowserRouter>
       <div className="bg-white flex flex-row">
-        <SideBar/>
+        <SideBar />
         <Routes>
           <Route exact path="/" element={<ShoppingList />} />
           <Route exact path="/history" element={<ShoppingHistory />} />
-          <Route exact path="/history/:id" element={<HistoryForPerticularId />} />
+          <Route
+            exact
+            path="/history/:id"
+            element={<HistoryForPerticularId />}
+          />
           <Route exact path="/statistics" element={<Statistics />} />
-        
         </Routes>
       </div>
     </BrowserRouter>
-
-
-  )
+  );
 }
 export default App;

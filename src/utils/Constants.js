@@ -1,8 +1,4 @@
-import {
-  AiOutlineMenu,
-  AiOutlineBarChart,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineBarChart } from "react-icons/ai";
 import { BsArrowRepeat } from "react-icons/bs";
 
 export const SideBarButton = [
@@ -32,4 +28,8 @@ export const SHOPPING_LIST_CONSTANTS = {
   TOP_CATEGORIES: "Top Categories",
   TOP_ITEMS: "Top Items",
   MONTHLY_SUMMARY: "Monthly Summary",
+  DIDNT_FIND: "Didn’t find what you need?",
+  ADD_ITEM: "Add Item",
+  SHOPPING_LIST: "Shopping List",
+  ADD_NEW_ITEM: "Add a new item",
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { InputField, InputSelect, TextArea } from "../sacomponents/Input/Input";
+import { SHOPPING_LIST_CONSTANTS } from "../../utils/Constants";
 const AddItems = ({ onSave, onCancel, choosePanel }) => {
   const [newItem, setNewItem] = useState({
     name: "",
@@ -29,7 +30,9 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
   return (
     <div className="max-[768px]:w-11/12 bg-[#faf9fe] w-1/5 flex flex-col justify-between h-screen py-10">
       <div class="mx-8 overflow-y-auto ">
-        <span class="text-xl ml-1 text-black font-medium"> Add a new item</span>
+        <span class="text-xl ml-1 text-black font-medium">
+          {SHOPPING_LIST_CONSTANTS.ADD_NEW_ITEM}
+        </span>
         <div className="my-6">
           <div className="my-8">
             <InputField

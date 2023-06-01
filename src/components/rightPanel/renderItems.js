@@ -3,6 +3,7 @@ import { MdEdit } from "react-icons/md";
 import ButtonIncOrDec from "../sacomponents/ButtonIncorDec";
 import { InputField } from "../sacomponents/Input/Input";
 import Cart from "../../assets/cart.svg";
+import { SHOPPING_LIST_CONSTANTS } from "../../utils/Constants";
 
 const RenderItems = ({
   data,
@@ -19,13 +20,13 @@ const RenderItems = ({
           </div>
           <div className="w-36">
             <p className="text-sm text-white font-medium">
-              Didn’t find what you need?
+              {SHOPPING_LIST_CONSTANTS.DIDNT_FIND}
             </p>
             <button
               className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal"
               onClick={choosePanel}
             >
-              Add Item
+              {SHOPPING_LIST_CONSTANTS.ADD_ITEM}
             </button>
           </div>
         </div>
@@ -42,7 +43,7 @@ const RenderItems = ({
         )} */}
         <div className="flex w-4/5 items-center justify-between">
           <div className="text-xl text-black font-medium">
-            <p>Shopping List</p>
+            <p>{SHOPPING_LIST_CONSTANTS.SHOPPING_LIST}</p>
           </div>
           <div className="cursor-pointer">
             <MdEdit size={20} />
