@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SideBarButton } from "../utils/Constants";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiFillHeart } from "react-icons/ai";
 import { COLORS } from "../themes/Color";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const SideBar = () => {
   return (
     <div className="flex flex-col items-center justify-between bg-white h-screen w-20 shadow-lg">
       <span className="w-10 h-10 rounded-3xl bg-black items-center justify-center flex m-6 cursor-pointer">
-        <AiOutlineHeart size={20} color={COLORS.orange} />
+        <AiFillHeart size={20} color={COLORS.orange} />
       </span>
       <div className="bg-white flex flex-col items-center justify-between h-1/5 w-full">
         {SideBarButton.map((category) => (

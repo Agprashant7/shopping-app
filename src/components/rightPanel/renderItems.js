@@ -2,6 +2,7 @@ import Bottle from "../../assets/source.svg";
 import { MdEdit } from "react-icons/md";
 import ButtonIncOrDec from "../sacomponents/ButtonIncorDec";
 import { InputField } from "../sacomponents/Input/Input";
+import Cart from "../../assets/cart.svg";
 
 const RenderItems = ({
   data,
@@ -20,12 +21,25 @@ const RenderItems = ({
             <p className="text-sm text-white font-medium">
               Didn’t find what you need?
             </p>
-            <button className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal"onClick={choosePanel} >
+            <button
+              className="rounded-lg py-2 px-5 mt-2 text-xs bg-slate-50 font-normal"
+              onClick={choosePanel}
+            >
               Add Item
             </button>
           </div>
         </div>
-
+        {/* 
+        {data.length === 0 && (
+          <div className="flex items-center flex-col justify-center mt-40">
+            <div className="grow h-52 mt-10">
+              <p className="text-lg font-medium text-black">No Items</p>
+            </div>
+            <div className="shrink-4">
+              <img src={Cart} alt="bottle" />
+            </div>
+          </div>
+        )} */}
         <div className="flex w-4/5 items-center justify-between">
           <div className="text-xl text-black font-medium">
             <p>Shopping List</p>
@@ -76,9 +90,13 @@ const RenderItems = ({
         </div>
       </div>
       <div className="h-1/6 flex items-center justify-center">
-        <div className="flex flex-row justify-center items-center">
-          <InputField />
-          <button className="rounded-lg p-3.5 px-5 mt-2 text-sm text-white mr-2 absolute right-4 bg-[#F9A109] font-medium">
+        <div className="flex">
+          <input
+            type="text"
+            className="border-2 rounded-l-lg px-4 py-3.5 text-gray-700 text-sm border-amber-500 focus:outline-none"
+            placeholder="Enter a name"
+          />
+          <button className="bg-amber-400 text-white text-sm font-medium rounded-r-lg px-6 py-3.5">
             Save
           </button>
         </div>

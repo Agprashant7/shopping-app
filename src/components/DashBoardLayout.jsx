@@ -31,7 +31,7 @@ const DashBoardLayout = ({
   };
 
   return (
-    <div className="flex flex-row w-screen">
+    <div className="flex flex-row w-screen h-screen overflow-auto">
       <div className="bg-[#faf9fe] w-4/5 px-20 py-8">{children}</div>
       <DisplayRightPanel />
     </div>

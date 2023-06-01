@@ -3,6 +3,7 @@ import RenderItems from "./rightPanel/renderItems";
 import { SearchInput } from "./sacomponents/Input/Input";
 import CardWithIcon from "./sacomponents/cardWithIcon/cardWithIcon";
 import DashBoardLayout from "./DashBoardLayout";
+import { SHOPPING_LIST_CONSTANTS } from "../utils/Constants";
 
 const shoppingItems = [
   {
@@ -130,6 +131,12 @@ const ShoppingList = () => {
   const deleteItem = (categoryIndex, itemIndex) => {
     const updatedItems = [...items];
     updatedItems[categoryIndex].items.splice(itemIndex, 1);
+
+    const allItemsDeleted = updatedItems[categoryIndex].items.length === 0;
+
+    if (allItemsDeleted) {
+      updatedItems.splice(categoryIndex, 1);
+    }
     setItems(updatedItems);
   };
 
@@ -143,8 +150,8 @@ const ShoppingList = () => {
     >
       <div className="flex flex-row justify-between">
         <p className="text-2xl text-black w-[30%] font-medium">
-          <span className="text-amber-500">Shoppingify</span> allows you take
-          your shopping list wherever you go
+          <span className="text-amber-500">Shoppingify </span>
+          {SHOPPING_LIST_CONSTANTS.ALLOW_YOU_TAKE}
         </p>
         <SearchInput
           value={search}

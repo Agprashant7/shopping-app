@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import RenderItems from "./rightPanel/renderItems";
 import { AiOutlineCalendar, AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import DashBoardLayout from "./DashBoardLayout";
+import { SHOPPING_LIST_CONSTANTS } from "../utils/Constants";
 
 const shoppingHistory = [
   {
@@ -45,12 +46,13 @@ const shoppingHistory = [
 
 const ShoppingHistory = () => {
   const navigate = useNavigate();
+  const [rightPanel, setRightPanel] = useState("");
 
   return (
-    <DashBoardLayout>
+    <DashBoardLayout rightPanel={rightPanel} setRightPanel={setRightPanel}>
       <div className="flex flex-row justify-between">
         <h1 className="text-2xl text-gray-900 w-[30%] font-medium">
-          Shopping History
+          {SHOPPING_LIST_CONSTANTS.SHOPPING_HISTORY}
         </h1>
       </div>
       {shoppingHistory.map((item) => {

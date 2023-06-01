@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DashBoardLayout from "./DashBoardLayout";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -50,8 +50,10 @@ const shoppingItems = [
 
 const HistoryForPerticularId = () => {
   const navigate = useNavigate();
+  const [rightPanel, setRightPanel] = useState("");
+
   return (
-    <DashBoardLayout>
+    <DashBoardLayout rightPanel={rightPanel} setRightPanel={setRightPanel}>
       <div
         className="flex flex-row items-center cursor-pointer"
         onClick={() => navigate(-1)}

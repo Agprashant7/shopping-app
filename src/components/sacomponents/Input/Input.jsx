@@ -10,14 +10,14 @@ export const SearchInput = ({
   type,
 }) => {
   return (
-    <form>
-      <div className="relative">
+    <form className="w-1/4">
+      <div className="relative shadow-sm">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <AiOutlineSearch size={22} />
         </div>
         <input
           type={type}
-          className="block w-full p-4 pl-10 text-base font-normal text-gray-800 border rounded-lg bg-white focus:outline-none"
+          className="block w-full p-4 pl-10 text-sm font-normal text-gray-600 border rounded-lg bg-white focus:outline-none"
           placeholder={placeholder}
           required={required}
           value={value}
@@ -38,7 +38,7 @@ SearchInput.propTypes = {
 
 SearchInput.defaultProps = {
   type: "search",
-  placeholder: "Search Item",
+  placeholder: "search item",
   required: false,
   value: "",
   onChange: "",
