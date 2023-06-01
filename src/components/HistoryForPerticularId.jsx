@@ -62,7 +62,7 @@ const HistoryForPerticularId = () => {
         <p className="pl-2 text-amber-500 text-sm">back</p>
       </div>
       <div className="py-5">
-        <h1 className="text-2xl text-gray-900 w-[30%] font-medium">
+        <h1 className="text-2xl text-gray-900 w-[30%] font-medium max-[768px]:w-full">
           Eero's farewell party
         </h1>
         <div className="flex flex-row items-center py-3">
@@ -74,7 +74,7 @@ const HistoryForPerticularId = () => {
         return (
           <div key={item.id} className="py-8">
             <h6 className="text-lg text-black font-medium ">{item.type}</h6>
-            <div className="flex flex-wrap py-5">
+            <div className="flex flex-wrap justify-start max-[700px]:justify-center py-5">
               {item.items.map((data) => {
                 return <CardWithIcon title={data.name} count={2} />;
               })}

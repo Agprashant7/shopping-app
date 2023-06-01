@@ -8,7 +8,7 @@ const DashBoardLayout = ({
   incrementOrDecrementCount,
   deleteItem,
   children,
-  rightPanel,
+  rightPanel=0,
   setRightPanel,
 }) => {
   const DisplayRightPanel = () => {
@@ -31,9 +31,12 @@ const DashBoardLayout = ({
   };
 
   return (
-    <div className="flex flex-row w-screen h-screen overflow-auto">
-      <div className="bg-[#faf9fe] w-4/5 px-20 py-8">{children}</div>
+    <div className="flex flex-row h-screen overflow-auto w-screen">
+      <div className="bg-[#faf9fe] w-4/5 px-20 py-8 max-[768px]:px-4 max-[768px]:w-screen">{children}</div>
+      <div className="max-[768px]:hidden w-1/5">
       <DisplayRightPanel />
+      </div>
+     
     </div>
   );
 };

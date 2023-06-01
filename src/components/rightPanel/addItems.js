@@ -76,7 +76,7 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
           </div>
         </div>
       </div>
-      <div class="flex flex-row justify-evenly items-center">
+      <div class=" mt-10 h-1/6 flex flex-row justify-center items-center ">
         <button
           class="rounded-lg p-3.5 px-5 text-sm text-black shadow-sm"
           onClick={choosePanel}

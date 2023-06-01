@@ -7,7 +7,7 @@ const CardWithIcon = ({
 }) => {
   return (
     <div
-      className={`my-5 mr-6 py-2.5 px-4 
+      className={`my-5 mr-6 py-2.5 px-4  max-[375px]:justify-center min-[405px]:w-40
         "bg-white"
        w-56 rounded-xl shadow-lg flex items-center justify-around flex-row cursor-pointer`}
     >

@@ -17,16 +17,16 @@ const Statistics = () => {
     { name: "Meat", value: 14 },
   ];
   return (
-    <DashBoardLayout rightPanel={rightPanel} setRightPanel={setRightPanel}>
-      <div class="flex mx-12 flex-row  justify-between h-1/3">
-        <div class=" mr-20  w-1/2 h-full">
-          <p class="text-2xl mb-5">{SHOPPING_LIST_CONSTANTS.TOP_ITEMS}</p>
-          {sampleItems.map((item, i) => {
-            return (
-              <>
-                <div class="flex my-4 flex-row justify-between">
-                  <p>{item.name}</p>
-                  <p>{item.value + "%"}</p>
+    <DashBoardLayout>
+        <div class='flex  flex-row justify-between h-1/3 max-[768px]:flex-col max-[768px]:items-center max-[768px]:h-1/2 max-[768px]:mx-0 '>
+            <div class=' mr-20 max-[768px]:w-full max-[768px]:mr-0  w-1/2 h-full'>
+            <p class="text-2xl mb-5">{SHOPPING_LIST_CONSTANTS.TOP_ITEMS}</p>
+                {sampleItems.map((item,i)=>{
+                    return(
+                        <>
+                         <div class='flex my-4 flex-row justify-between'>
+                    <p>{item.name}</p>
+                    <p>{item.value+'%'}</p>
                 </div>
                 <div class="w-full bg-gray-200 rounded-lg h-1.5 dark:bg-gray-700">
                   <div
@@ -62,7 +62,7 @@ const Statistics = () => {
           </div>
         </div>
       </div>
-      <div class="mx-12 w-full h-1/2">
+      <div class='mx-12  max-[768px]:mt-20  max-[768px]:mx-0 h-1/2 max-[768px]:h-1/5'>
         <p class="text-2xl">{SHOPPING_LIST_CONSTANTS.MONTHLY_SUMMARY}</p>
         <div class=" mt-10 justify-center">
           <Chart />
