@@ -149,14 +149,17 @@ const ShoppingList = () => {
       setRightPanel={setRightPanel}
     >
       <div className="flex flex-row justify-between">
-        <p className="text-2xl text-black w-[30%] font-medium">
+        <p className="text-2xl text-black w-[30%] max-[768px]:w-[100%]  font-medium">
           <span className="text-amber-500">Shoppingify </span>
           {SHOPPING_LIST_CONSTANTS.ALLOW_YOU_TAKE}
         </p>
+        <div className="max-[768px]:hidden">
         <SearchInput
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        </div>
+       
       </div>
       {shoppingItems.map((item) => {
         return (

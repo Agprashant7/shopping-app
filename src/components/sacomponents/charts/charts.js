@@ -75,17 +75,26 @@ const data = [
 ];
 
  const Chart=()=> {
+    const[aspectRatio,setAspectRatio]=React.useState(2.4)
+	React.useEffect(()=>{
+		
+		if(window.innerWidth>0 && window.innerWidth < 500){
+			setAspectRatio(1.4)
+		}else if (window.innerWidth > 700){
+			setAspectRatio(2.2)
+		}
+	},[])
   return (
-    <ResponsiveContainer width="90%"  aspect={2.4} >
+    <ResponsiveContainer width="100%"  aspect={aspectRatio} >
     <LineChart
        width={800}
       data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5
-      }}
+    //   margin={{
+    //     top: 5,
+    //     right: 30,
+    //     left: 20,
+    //     bottom: 5
+    //   }}
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />

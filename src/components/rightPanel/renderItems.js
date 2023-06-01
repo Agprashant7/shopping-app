@@ -11,7 +11,7 @@ const RenderItems = ({
   choosePanel,
 }) => {
   return (
-    <div className="w-1/5 h-screen">
+    <div className="w-full h-screen">
       <div className="bg-[#FFF0DE] h-5/6 flex flex-col items-center overflow-y-auto">
         <div className="h-28 w-4/5 rounded-2xl bg-[#80485B] my-10 flex flex-row justify-around items-center">
           <div className="mb-3">

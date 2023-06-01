@@ -64,17 +64,20 @@ const ShoppingHistory = () => {
             {item.items.map((data) => {
               return (
                 <div
-                  className="flex flex-row bg-white shadow-md p-5 rounded-lg my-10 items-center justify-between cursor-pointer"
+                  className="flex flex-row bg-white shadow-md p-6 rounded-lg my-10  max-[850px]:justify-between items-center justify-between cursor-pointer"
                   onClick={() => navigate(`/history/${data.id}`)}
                 >
                   <div>
                     <p>{data.name}</p>
                   </div>
-                  <div className="flex flex-row items-center w-3/12 justify-between">
+                  <div className="flex flex-row  max-[850px]:justify-center gap-3 items-center w-3/12 justify-between">
+                    <div className="max-[850px]:hidden">
                     <AiOutlineCalendar size={20} className="text-[#c1c1c4]" />
+                    </div>
+                   
                     <p className="text-xs text-[#c1c1c4]">{data.date}</p>
                     <p
-                      className={`text-xs border rounded p-1 ${
+                      className={`text-xs border rounded p-1 px-0 ${
                         data.status === "Completed"
                           ? "text-[#56ccf2]"
                           : "text-red-600"
@@ -86,7 +89,10 @@ const ShoppingHistory = () => {
                     >
                       {data.status}
                     </p>
+                    <div className="max-[850px]:hidden">
                     <AiOutlineRight size={20} className="text-amber-500" />
+                    </div>
+                    
                   </div>
                 </div>
               );
