@@ -153,13 +153,10 @@ const ShoppingList = () => {
           <span className="text-amber-500">Shoppingify </span>
           {SHOPPING_LIST_CONSTANTS.ALLOW_YOU_TAKE}
         </p>
-        <div className="max-[768px]:hidden">
         <SearchInput
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        </div>
-       
       </div>
       {shoppingItems.map((item) => {
         return (
