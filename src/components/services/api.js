@@ -3,7 +3,7 @@ import axios from "axios";
 export function post(apiBaseURL, location, body) {
   const token = localStorage.getItem("token");
   const config = {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `${token}` },
   };
   return axios
     .post(`${apiBaseURL}${location}`, body, config)
@@ -33,7 +33,7 @@ export function put(apiBaseURL, location, body) {
 export function get(apiBaseURL, location) {
   const token = localStorage.getItem("token");
   const config = {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: ` ${token}` },
   };
   const url = `${apiBaseURL}${location}`;
   return axios

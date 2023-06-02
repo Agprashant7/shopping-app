@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { InputField, InputSelect, TextArea } from "../sacomponents/Input/Input";
 import { SHOPPING_LIST_CONSTANTS } from "../../utils/Constants";
+import appConfig from "../services/appConfig";
+import { post } from "../services/api";
 const AddItems = ({ onSave, onCancel, choosePanel }) => {
   const [newItem, setNewItem] = useState({
-    name: "",
+    itemName: "",
     note: "",
-    image: "",
+    imageLink: "",
     category: "",
   });
+  const [apiMsg,setApiMsg]=useState()
 
   useEffect(() => {
     valueExists(newItem);
@@ -18,27 +21,49 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
     setNewItem({ ...newItem, [event.target.name]: event.target.value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = async e => {
+    // e.preventDefault();
     if (valueExists(newItem)) {
-      choosePanel();
+      const { error, response } = await post(
+        `${appConfig.API_BASE_URL}`,
+        `${"/addItems"}`,
+        newItem
+      );
+      console.log("error",error)
+      console.log("response",response)
+      // choosePanel();
+      if(response){
+        setApiMsg("Item Added Successfully")
+        setNewItem({  itemName: "",
+        note: "",
+        imageLink: "",
+        category: "",})
+        setApiMsg("")
+      }
+      if(error){
+        setApiMsg("Something Went Wrong...try again")
+      }
     }
+    
   };
   const ImageLabel =
     "<div><span>Image <a target='_blank' href='https://image-link-generator.netlify.app/' style='color: blue'>(Image Link Generator)</a></span></div>";
 
   const valueExists = (obj) => Object.keys(obj).every((key) => obj[key] !== "");
   return (
-    <div className="max-[768px]:w-11/12 bg-[#faf9fe] w-1/5 flex flex-col justify-between h-screen py-10">
+    <div className="max-[768px]:w-11/12 bg-[#faf9fe]  flex flex-col justify-between h-screen py-10">
+    
       <div class="mx-8 overflow-y-auto ">
         <span class="text-xl ml-1 text-black font-medium">
           {SHOPPING_LIST_CONSTANTS.ADD_NEW_ITEM}
         </span>
+        
         <div className="my-6">
           <div className="my-8">
             <InputField
               label={"Name"}
-              value={newItem.name}
-              name={"name"}
+              value={newItem.itemName}
+              name={"itemName"}
               placeholder={"Enter a name"}
               onChange={(e) => handleChange(e)}
             />
@@ -55,8 +80,8 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
           <div className="my-8">
             <InputField
               label={ImageLabel}
-              value={newItem.image}
-              name={"image"}
+              value={newItem.imageLink}
+              name={"imageLink"}
               placeholder={"Enter a url"}
               onChange={(e) => handleChange(e)}
             />
@@ -74,7 +99,9 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
               label={"Category"}
             />
           </div>
+          <p className="">{apiMsg}</p>
         </div>
+       
       </div>
       <div class=" mt-10 h-1/6 flex flex-row justify-center items-center ">
         <button
@@ -91,6 +118,7 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
           Save
         </button>
       </div>
+    
     </div>
   );
 };

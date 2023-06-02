@@ -61,7 +61,7 @@ const RenderItems = ({
                   {value.items.map((item, itemIndex) => {
                     return (
                       <div className="flex flex-row justify-between items-center py-3">
-                        <div className="text-base font-normal">{item.name}</div>
+                        <div className="text-base font-normal">{item.itemName}</div>
                         <ButtonIncOrDec
                           count={item.count}
                           isExpand={item.count > 1}

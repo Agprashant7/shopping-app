@@ -4,94 +4,31 @@ import { SearchInput } from "./sacomponents/Input/Input";
 import CardWithIcon from "./sacomponents/cardWithIcon/cardWithIcon";
 import DashBoardLayout from "./DashBoardLayout";
 import { SHOPPING_LIST_CONSTANTS } from "../utils/Constants";
+import appConfig from "./services/appConfig";
+import { get } from "./services/api";
 
-const shoppingItems = [
-  {
-    id: 1,
-    type: "Fruit and vegitables",
-    items: [
-      {
-        id: 1,
-        name: "Avocado",
-        count: 0,
-      },
-      {
-        id: 2,
-        name: "Banana",
-        count: 0,
-      },
-      {
-        id: 3,
-        name: "Bunch of carrots 5pcs",
-        count: 0,
-      },
-      {
-        id: 4,
-        name: "Chicken 1kg",
-        count: 0,
-      },
-      {
-        id: 5,
-        name: "pre cooked corn 450g",
-        count: 0,
-      },
-      {
-        id: 6,
-        name: "Mandorin Nadorcatt",
-        count: 0,
-      },
-      {
-        id: 7,
-        name: "Water melon",
-        count: 0,
-      },
-    ],
-  },
-  {
-    id: 2,
-    type: "Meat and Fish",
-    items: [
-      {
-        id: 1,
-        name: "Beef leg piece",
-        count: 0,
-      },
-      {
-        id: 2,
-        name: "Pork",
-        count: 0,
-      },
-      {
-        id: 3,
-        name: "Salmon",
-        count: 0,
-      },
-      {
-        id: 4,
-        name: "Tuna",
-        count: 0,
-      },
-      {
-        id: 5,
-        name: "Lamb",
-        count: 0,
-      },
-      {
-        id: 6,
-        name: "Shrimp",
-        count: 0,
-      },
-    ],
-  },
-];
 
 const ShoppingList = ({ isShowRightDrawer }) => {
   const [search, setSearch] = useState("");
   const [items, setItems] = useState([]);
   const [rightPanel, setRightPanel] = useState(0);
+  const [newShoppingItems,setShoppingItems]=useState();
 
+  React.useEffect( ()=>{
+    async function getItems(){
+      const { error, response } = await get(
+        `${appConfig.API_BASE_URL}`,
+        `${"/items"}`
+       
+      );
+      console.log('API ITEMS',response?.data?.data)
+      setShoppingItems(response?.data?.data)
+    }
+    getItems()
+  
+  },[])
   const addItemToBasket = (type, data) => {
-    const itemIndex = items.findIndex((item) => item.type === type);
+    const itemIndex = items.findIndex((item) => item.category === type);
 
     if (itemIndex !== -1) {
       const updatedItems = [...items];
@@ -159,16 +96,17 @@ const ShoppingList = ({ isShowRightDrawer }) => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      {shoppingItems.map((item) => {
+      {newShoppingItems?
+      newShoppingItems?.map((item) => {
         return (
           <div key={item.id} className="py-8">
-            <p className="text-lg text-black font-medium ">{item.type}</p>
+            <p className="text-lg text-black font-medium ">{item.category}</p>
             <div className="flex flex-wrap py-5">
-              {item.items.map((data) => {
+              {item?.items?.map((data) => {
                 return (
                   <CardWithIcon
-                    title={data.name}
-                    onClick={() => addItemToBasket(item.type, data)}
+                    title={data.itemName}
+                    onClick={() => addItemToBasket(item.category, data)}
                     onCardButtonClick={() => setRightPanel(2)}
                   />
                 );
@@ -176,7 +114,7 @@ const ShoppingList = ({ isShowRightDrawer }) => {
             </div>
           </div>
         );
-      })}
+      }):<></>}
     </DashBoardLayout>
   );
 };
