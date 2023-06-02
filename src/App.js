@@ -7,23 +7,55 @@ import HistoryForPerticularId from "./components/HistoryForPerticularId";
 import Statistics from "./components/Statistics";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isUserLogin, setIsUserLogin] = useState(false);
+  const [isShowRightDrawer, setIsShowRightDrawer] = useState(true);
+
+  useEffect(() => {
+    const userLogin = localStorage.getItem("userLogin");
+    setIsUserLogin(userLogin);
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="bg-white flex flex-row">
-        {/* <SideBar /> */}
+        {isUserLogin && (
+          <SideBar
+            setIsShowRightDrawer={setIsShowRightDrawer}
+            isShowRightDrawer={isShowRightDrawer}
+          />
+        )}
         <Routes>
-          <Route exact path="/signin" element={<LogIn />} />
+          <Route
+            exact
+            path="/signin"
+            element={<LogIn setIsUserLogin={setIsUserLogin} />}
+          />
           <Route exact path="/signup" element={<SignUp />} />
-          <Route exact path="/" element={<ShoppingList />} />
-          <Route exact path="/history" element={<ShoppingHistory />} />
+          <Route
+            exact
+            path="/"
+            element={<ShoppingList isShowRightDrawer={isShowRightDrawer} />}
+          />
+          <Route
+            exact
+            path="/history"
+            element={<ShoppingHistory isShowRightDrawer={isShowRightDrawer} />}
+          />
           <Route
             exact
             path="/history/:id"
-            element={<HistoryForPerticularId />}
+            element={
+              <HistoryForPerticularId isShowRightDrawer={isShowRightDrawer} />
+            }
           />
-          <Route exact path="/statistics" element={<Statistics />} />
+          <Route
+            exact
+            path="/statistics"
+            element={<Statistics isShowRightDrawer={isShowRightDrawer} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

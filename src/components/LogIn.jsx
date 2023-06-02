@@ -5,21 +5,30 @@ import { AiFillHeart } from "react-icons/ai";
 import { COLORS } from "../themes/Color";
 import appConfig from "../components/services/appConfig";
 import { post } from "../components/services/api";
+import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
-const LogIn = () => {
+const LogIn = ({ setIsUserLogin }) => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     const { error, response } = await post(
       `${appConfig.API_BASE_URL}`,
       `${"/auth/signIn"}`,
       loginInfo
     );
-
-    console.log("error", error, "response", response);
+    setIsLoading(false);
+    if (response) {
+      setIsUserLogin(true);
+      localStorage.setItem("userLogin", true);
+      navigate("/");
+    }
   };
 
   return (
@@ -66,7 +75,10 @@ const LogIn = () => {
           <div className="my-6 text-center">
             <p className="text-sm font-normal">
               First time using Shoppingify?{" "}
-              <span className="font-medium text-black cursor-pointer">
+              <span
+                className="font-medium text-black cursor-pointer"
+                onClick={() => navigate("/signup")}
+              >
                 Sign up
               </span>
             </p>
@@ -81,6 +93,7 @@ const LogIn = () => {
           <img src={EmptyCart} className="w-[55%]" />
         </div>
       </div>
+      {isLoading && <Loading />}
     </div>
   );
 };

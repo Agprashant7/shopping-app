@@ -44,12 +44,16 @@ const shoppingHistory = [
   },
 ];
 
-const ShoppingHistory = () => {
+const ShoppingHistory = ({ isShowRightDrawer }) => {
   const navigate = useNavigate();
   const [rightPanel, setRightPanel] = useState("");
 
   return (
-    <DashBoardLayout rightPanel={rightPanel} setRightPanel={setRightPanel}>
+    <DashBoardLayout
+      rightPanel={rightPanel}
+      setRightPanel={setRightPanel}
+      isShowRightDrawer={isShowRightDrawer}
+    >
       <div className="flex flex-row justify-between">
         <h1 className="text-2xl text-gray-900 w-[30%] font-medium">
           {SHOPPING_LIST_CONSTANTS.SHOPPING_HISTORY}
@@ -72,9 +76,9 @@ const ShoppingHistory = () => {
                   </div>
                   <div className="flex flex-row  max-[850px]:justify-center gap-3 items-center w-3/12 justify-between">
                     <div className="max-[850px]:hidden">
-                    <AiOutlineCalendar size={20} className="text-[#c1c1c4]" />
+                      <AiOutlineCalendar size={20} className="text-[#c1c1c4]" />
                     </div>
-                   
+
                     <p className="text-xs text-[#c1c1c4]">{data.date}</p>
                     <p
                       className={`text-xs border rounded p-1 px-0 ${
@@ -90,9 +94,8 @@ const ShoppingHistory = () => {
                       {data.status}
                     </p>
                     <div className="max-[850px]:hidden">
-                    <AiOutlineRight size={20} className="text-amber-500" />
+                      <AiOutlineRight size={20} className="text-amber-500" />
                     </div>
-                    
                   </div>
                 </div>
               );

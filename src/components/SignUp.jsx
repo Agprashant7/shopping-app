@@ -3,8 +3,12 @@ import { InputField } from "./sacomponents/Input/Input";
 import EmptyCart from "../assets/cart.svg";
 import { AiFillHeart } from "react-icons/ai";
 import { COLORS } from "../themes/Color";
+import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [signUpInfo, setSignUpInfo] = useState({
     name: "",
     email: "",
@@ -66,7 +70,10 @@ const SignUp = () => {
           <div className="my-6 text-center">
             <p className="text-sm font-normal">
               Already have an account?{" "}
-              <span className="font-medium text-black cursor-pointer">
+              <span
+                className="font-medium text-black cursor-pointer"
+                onClick={() => navigate("/signin")}
+              >
                 Sign in
               </span>
             </p>
@@ -81,6 +88,7 @@ const SignUp = () => {
           <img src={EmptyCart} className="w-[55%]" />
         </div>
       </div>
+      {isLoading && <Loading />}
     </div>
   );
 };

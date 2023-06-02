@@ -1,5 +1,7 @@
 import { AiOutlineMenu, AiOutlineBarChart } from "react-icons/ai";
 import { BsArrowRepeat } from "react-icons/bs";
+import { GoSignOut } from "react-icons/go";
+import { MdAccountCircle } from "react-icons/md";
 
 export const SideBarButton = [
   {
@@ -19,6 +21,21 @@ export const SideBarButton = [
     name: "Statistics",
     icon: AiOutlineBarChart,
     routing: "statistics",
+  },
+];
+
+export const SidePannelBtn = [
+  {
+    id: 1,
+    name: "Account",
+    icon: MdAccountCircle,
+    routing: "/account",
+  },
+  {
+    id: 2,
+    name: "Sign out",
+    icon: GoSignOut,
+    routing: "/signin",
   },
 ];
 

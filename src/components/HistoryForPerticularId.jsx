@@ -48,12 +48,16 @@ const shoppingItems = [
   },
 ];
 
-const HistoryForPerticularId = () => {
+const HistoryForPerticularId = ({ isShowRightDrawer }) => {
   const navigate = useNavigate();
   const [rightPanel, setRightPanel] = useState("");
 
   return (
-    <DashBoardLayout rightPanel={rightPanel} setRightPanel={setRightPanel}>
+    <DashBoardLayout
+      rightPanel={rightPanel}
+      setRightPanel={setRightPanel}
+      isShowRightDrawer={isShowRightDrawer}
+    >
       <div
         className="flex flex-row items-center cursor-pointer"
         onClick={() => navigate(-1)}

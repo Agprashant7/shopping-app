@@ -85,7 +85,7 @@ const shoppingItems = [
   },
 ];
 
-const ShoppingList = () => {
+const ShoppingList = ({ isShowRightDrawer }) => {
   const [search, setSearch] = useState("");
   const [items, setItems] = useState([]);
   const [rightPanel, setRightPanel] = useState(0);
@@ -147,6 +147,7 @@ const ShoppingList = () => {
       deleteItem={deleteItem}
       rightPanel={rightPanel}
       setRightPanel={setRightPanel}
+      isShowRightDrawer={isShowRightDrawer}
     >
       <div className="flex flex-row justify-between">
         <p className="text-2xl text-black w-[30%] max-[768px]:w-[100%]  font-medium">
