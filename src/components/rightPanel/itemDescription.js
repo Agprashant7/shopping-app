@@ -1,8 +1,24 @@
 import Bottle from "../../assets/source.svg";
 import { IoMdArrowBack } from "react-icons/io";
-const ItemDescription = ({ onDelete, onAddToList, choosePanel }) => {
+import React from "react";
+import { del, post } from "../services/api";
+import appConfig from "../services/appConfig";
+const ItemDescription = ({  onAddToList, choosePanel,description }) => {
+
+const deleteItem= async()=>{
+  const { error, response } = await del(
+    `${appConfig.API_BASE_URL}`,
+    `${"/deleteItem/"+description.itemId+'/'+description.category}`,
+    
+  );
+  console.log("error",error)
+  console.log("response",response)
+  if(response){
+    choosePanel(0)
+  }
+}
   return (
-    <div className="max-[768px]:w-11/12 bg-white w-1/5 flex justify-between flex-col h-screen p-10">
+    <div className="max-[768px]:w-11/12 bg-white w-full flex justify-between flex-col h-screen p-10">
       <div>
         <div
           class="flex flex-row justify-start items-center cursor-pointer"
@@ -19,19 +35,18 @@ const ItemDescription = ({ onDelete, onAddToList, choosePanel }) => {
         <div class="my-10">
           <div className="my-6">
             <p class="text-xs text-gray-500 font-medium">name</p>
-            <p class="text-xl pt-1 text-black font-medium">Avocodo</p>
+            <p class="text-xl pt-1 text-black font-medium">{description.itemName}</p>
           </div>
           <div className="my-6">
             <p class="text-xs text-gray-500">Category</p>
             <p class="text-base pt-1 text-black font-medium">
-              Fruits and Vegitables
+              {description.category}
             </p>
           </div>
-          <div className="my-6">
-            <p class="text-xs text-gray-500">note</p>
+          <div className="">
+            <p class="text-xs">note</p>
             <p class="text-base pt-1 text-black font-medium">
-              Nutrient-dense foods are those that provide substantial amounts of
-              vitamins, One-third of a medium avocado d choice.
+             {description.note}
             </p>
           </div>
         </div>
@@ -39,13 +54,13 @@ const ItemDescription = ({ onDelete, onAddToList, choosePanel }) => {
       <div class="flex flex-row justify-between items-center px-5">
         <button
           class="rounded-lg p-3.5 px-5 text-sm text-black font-medium"
-          onClick={onDelete}
+          onClick={()=>deleteItem()}
         >
           Delete
         </button>
         <button
           class="rounded-lg p-3.5 px-5 text-sm text-white bg-[#F9A109]"
-          onClick={onAddToList}
+          onClick={()=>onAddToList(description)}
         >
           Add to list
         </button>

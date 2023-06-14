@@ -2,15 +2,17 @@ import React from "react";
 import RenderItems from "./rightPanel/renderItems";
 import AddItems from "./rightPanel/addItems";
 import ItemDescription from "./rightPanel/itemDescription";
-
+import EmptyList from './rightPanel/emptyList'
 const DashBoardLayout = ({
   data,
+  description,
   incrementOrDecrementCount,
   deleteItem,
   children,
-  rightPanel = 0,
+  rightPanel = 4,
   setRightPanel,
   isShowRightDrawer,
+  onAddToList
 }) => {
   const DisplayRightPanel = () => {
     if (rightPanel == 0) {
@@ -19,7 +21,7 @@ const DashBoardLayout = ({
           data={data}
           incrementOrDecrementCount={incrementOrDecrementCount}
           deleteItem={deleteItem}
-          choosePanel={() => setRightPanel(1)}
+          choosePanel={(val) => setRightPanel(val)}
         />
       );
     }
@@ -27,14 +29,17 @@ const DashBoardLayout = ({
       return <AddItems choosePanel={() => setRightPanel(0)} />;
     }
     if (rightPanel == 2) {
-      return <ItemDescription choosePanel={() => setRightPanel(0)} />;
+      return <ItemDescription  description={description} onAddToList={onAddToList} choosePanel={() => setRightPanel(0)} />;
+    }
+    if (rightPanel == 4) {
+      return <EmptyList choosePanel={() => setRightPanel(0)} />
     }
   };
 
   return (
-    <div className="flex flex-row h-screen overflow-auto w-screen">
+    <div className="flex flex-row h-screen overflow-scroll w-screen">
       <div
-        className={`bg-[#faf9fe] ${
+        className={`bg-[#faf9fe] overflow-scroll ${
           isShowRightDrawer ? "w-4/5" : "w-full"
         } px-20 py-8 max-[768px]:px-4 max-[768px]:w-scree`}
       >

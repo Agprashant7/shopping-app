@@ -6,12 +6,14 @@ import DashBoardLayout from "./DashBoardLayout";
 import { SHOPPING_LIST_CONSTANTS } from "../utils/Constants";
 import appConfig from "./services/appConfig";
 import { get } from "./services/api";
+import Loading from "./Loading";
 
 
 const ShoppingList = ({ isShowRightDrawer }) => {
   const [search, setSearch] = useState("");
   const [items, setItems] = useState([]);
-  const [rightPanel, setRightPanel] = useState(0);
+  const [itemDescription, setItemDescription] = useState();
+  const [rightPanel, setRightPanel] = useState(4);
   const [newShoppingItems,setShoppingItems]=useState();
 
   React.useEffect( ()=>{
@@ -26,27 +28,39 @@ const ShoppingList = ({ isShowRightDrawer }) => {
     }
     getItems()
   
-  },[])
+  },[rightPanel])
   const addItemToBasket = (type, data) => {
     const itemIndex = items.findIndex((item) => item.category === type);
-
+ 
     if (itemIndex !== -1) {
       const updatedItems = [...items];
-      updatedItems[itemIndex] = {
-        ...updatedItems[itemIndex],
-        items: [...updatedItems[itemIndex].items, { ...data, count: 1 }],
-      };
+        updatedItems[itemIndex] = {
+          ...updatedItems[itemIndex],
+          items: [...updatedItems[itemIndex].items, { ...data, count: 1 }],
+        };  
       setItems(updatedItems);
     } else {
       setItems([
         ...items,
         {
-          type: type,
+          category: type,
           items: [{ ...data, count: 1 }],
         },
       ]);
     }
+    setRightPanel(0)
   };
+  const onAddToList=(description)=>{
+    const {category}=description
+    addItemToBasket(category,description)
+
+  }
+
+  const showItemDescription=(data,category,id)=>{
+    const obj={...data,'category':category,'id':id}
+    setItemDescription(obj)
+    setRightPanel(2)
+  }
 
   const incrementOrDecrementCount = (
     categoryIndex,
@@ -80,11 +94,13 @@ const ShoppingList = ({ isShowRightDrawer }) => {
   return (
     <DashBoardLayout
       data={items}
+      description={itemDescription}
       incrementOrDecrementCount={incrementOrDecrementCount}
       deleteItem={deleteItem}
       rightPanel={rightPanel}
       setRightPanel={setRightPanel}
       isShowRightDrawer={isShowRightDrawer}
+      onAddToList={onAddToList}
     >
       <div className="flex flex-row justify-between">
         <p className="text-2xl text-black w-[30%] max-[768px]:w-[100%]  font-medium">
@@ -107,14 +123,14 @@ const ShoppingList = ({ isShowRightDrawer }) => {
                   <CardWithIcon
                     title={data.itemName}
                     onClick={() => addItemToBasket(item.category, data)}
-                    onCardButtonClick={() => setRightPanel(2)}
+                    onCardButtonClick={() => showItemDescription(data,item.category,item._id)}
                   />
                 );
               })}
             </div>
           </div>
         );
-      }):<></>}
+      }):<Loading/>}
     </DashBoardLayout>
   );
 };

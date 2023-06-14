@@ -48,3 +48,21 @@ export function get(apiBaseURL, location) {
       return error;
     });
 }
+export function del(apiBaseURL, location) {
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: { Authorization: ` ${token}` },
+  };
+  const url = `${apiBaseURL}${location}`;
+  return axios
+    .delete(`${url}`, config)
+    .then((response) => {
+      return { error: null, response };
+    })
+    .catch((error) => {
+      if (error.response) {
+        return { error: error.response };
+      }
+      return error;
+    });
+}

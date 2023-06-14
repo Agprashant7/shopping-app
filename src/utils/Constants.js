@@ -49,4 +49,6 @@ export const SHOPPING_LIST_CONSTANTS = {
   ADD_ITEM: "Add Item",
   SHOPPING_LIST: "Shopping List",
   ADD_NEW_ITEM: "Add a new item",
+  CANCEL_LIST_DESCRIPTION:'Are you sure that you want to cancel this list?',
+  COMPLETE_LIST_DESCRIPTION:"Are you sure that you want to complete this list?"
 };

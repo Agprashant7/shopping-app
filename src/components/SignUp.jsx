@@ -5,15 +5,31 @@ import { AiFillHeart } from "react-icons/ai";
 import { COLORS } from "../themes/Color";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import appConfig from "./services/appConfig";
+import { post } from "./services/api";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [signUpInfo, setSignUpInfo] = useState({
-    name: "",
+    firstName: "",
     email: "",
-    passwod: "",
+    password: "",
+    lastName:' '
   });
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    const { error, response } = await post(
+      `${appConfig.API_BASE_URL}`,
+      `${"/auth/signUp"}`,
+      signUpInfo
+    );
+    setIsLoading(false);
+    if (response) {
+     console.log("Response",response)
+      navigate("/signIn");
+    }
+  };
 
   return (
     <div className="flex flex-row h-screen w-full">
@@ -28,12 +44,12 @@ const SignUp = () => {
           <div className="my-8">
             <InputField
               label={"Name"}
-              value={signUpInfo.name}
+              value={signUpInfo.firstName}
               name={"name"}
               placeholder={"Enter your name"}
               style={{ borderColor: "#f59e0b", padding: 20, borderWidth: 2 }}
               onChange={(e) =>
-                setSignUpInfo({ ...signUpInfo, name: e.target.value })
+                setSignUpInfo({ ...signUpInfo, firstName: e.target.value })
               }
             />
           </div>
@@ -53,17 +69,17 @@ const SignUp = () => {
             <InputField
               label={"Password"}
               type={"password"}
-              value={signUpInfo.passwod}
+              value={signUpInfo.password}
               name={"name"}
               placeholder={"Enter your password"}
               style={{ borderColor: "#f59e0b", padding: 20, borderWidth: 2 }}
               onChange={(e) =>
-                setSignUpInfo({ ...signUpInfo, passwod: e.target.value })
+                setSignUpInfo({ ...signUpInfo, password: e.target.value })
               }
             />
           </div>
           <div className="mt-8 mb-4">
-            <button className="bg-amber-500 w-full p-5 rounded-lg text-white text-base font-medium">
+            <button onClick={handleSubmit} className="bg-amber-500 w-full p-5 rounded-lg text-white text-base font-medium">
               Sign up
             </button>
           </div>

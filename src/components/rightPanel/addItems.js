@@ -3,7 +3,9 @@ import { InputField, InputSelect, TextArea } from "../sacomponents/Input/Input";
 import { SHOPPING_LIST_CONSTANTS } from "../../utils/Constants";
 import appConfig from "../services/appConfig";
 import { post } from "../services/api";
+import { useNavigate } from "react-router-dom";
 const AddItems = ({ onSave, onCancel, choosePanel }) => {
+  const navigate = useNavigate();
   const [newItem, setNewItem] = useState({
     itemName: "",
     note: "",
@@ -39,6 +41,7 @@ const AddItems = ({ onSave, onCancel, choosePanel }) => {
         imageLink: "",
         category: "",})
         setApiMsg("")
+        choosePanel(0)
       }
       if(error){
         setApiMsg("Something Went Wrong...try again")
